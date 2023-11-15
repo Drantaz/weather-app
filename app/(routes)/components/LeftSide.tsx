@@ -1,48 +1,69 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { Cloud, CloudCog, Rainbow } from "lucide-react";
+import { converDay, convertTimeZone } from "@/helper/conver";
+import { Cloud, Rainbow } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
-import axios from 'axios'
+import moment from "moment"
 
-export const LeftSide = (data:any) => {
-
-    const {name,main}=data.data
-    
-
+export const LeftSide = (data: any) => {
+  const { name, main, weather, dt, timezone } = data.data;
   return (
     <div>
-      <div className="flex justify-center mt-8">
-        <Image
-          src="/images/clear.png"
-          alt="sun"
-          width={170}
-          height={170}
-          className="fill object-cover"
-        />
+      <div className="">
+        {weather && weather.length > 0 ? (
+          <Image
+            src={`https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`}
+            width={300}
+            height={300}
+            alt="gambia"
+            className="rounded-2xl"
+          />
+        ) : (
+          <Image
+            src="/images/clear.png"
+            width={300}
+            height={300}
+            alt="gambia"
+            className="rounded-2xl"
+          />
+        )}
       </div>
-      <h1 className="text-4xl font-extrabold text-center mt-12">{main?.temp}°C</h1>
-      <div className="mt-12">
+      <h1 className="text-4xl font-extrabold text-center mx-5 text-blue-600">
+        {main ? `${main.temp}°C` : "38°C"}
+      </h1>
+      <div className="mt-12 max-sm:hidden">
         <h2 className="text-center flex justify-center bold text-2xl">
-          Monday 12:30PM
+          {dt ? (
+            <>
+               {moment(dt).format('dddd')}  {moment(dt).format("HH:mm")}
+            </>
+          ) : (
+            "Monday 6:30AM"
+          )}
         </h2>
       </div>
-      <div className="px-8">
-        <Separator className="mt-10 bg-gray-400" />
-        <div className="flex flex-col gap-3 mt-[120px]">
+      <div className="px-8  max-sm:hidden">
+        <Separator className="mt-[30px] bg-gray-200" />
+        <div className="flex flex-col gap-y-5 m-8">
           <div className="flex gap-x-3">
             <Cloud />
-            <span>Monstly Cloudy</span>
+            {weather && weather.length > 0 ? (
+              <span>{weather[0]?.description}</span>
+            ) : (
+              "Cloudy"
+            )}
           </div>
           <div className="flex gap-x-3">
             <Rainbow />
-            <span>Rain-24%</span>
+            {weather && weather.length > 0 ? (
+              <span>{weather[0]?.main}</span>
+            ) : (
+              "Rainy"
+            )}
           </div>
         </div>
       </div>
-      <div className="relative">
-        <div className="flex justify-center mt-[80px] mb-[5px]">
+      <div className="relative  max-sm:hidden">
+        <div className="flex justify-center mt-[80px]">
           <Image
             src="/images/gambia.jpg"
             width={300}
@@ -51,7 +72,7 @@ export const LeftSide = (data:any) => {
             className="rounded-2xl"
           />
         </div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-2xl font-bold">
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-l font-bold">
           {name}
         </div>
       </div>
