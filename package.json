@@ -8,6 +8,7 @@
   },
   "keywords": [],
   "author": "",
+<<<<<<< HEAD
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.9.0",
@@ -17,4 +18,7 @@
   "dependencies": {
     "next": "^14.0.2"
   }
+=======
+  "license": "ISC"
+>>>>>>> 6f271087e115a8bec48b5204bde4a40c47aa2da7
 }
