@@ -7,8 +7,7 @@ import { convertEpochToTime } from "@/helper/conver";
 export const LeftSide = (data: any) => {
   const { name, main, weather, dt,sys } = data.data;
   const now_time=convertEpochToTime(dt);
-  console.log(now_time);
-
+  
   return (
     <div>
       <div className="">
@@ -67,7 +66,7 @@ export const LeftSide = (data: any) => {
         </div>
       </div>
       <div className="relative  max-sm:hidden">
-        <div className="flex justify-center mt-[50px]">
+        <div className="flex justify-center mt-[50px] px-5">
           <Image
             src="/images/gambia.jpg"
             width={300}

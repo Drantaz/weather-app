@@ -26,7 +26,12 @@ const ForecastCard = ({ data, state }: ForecastCardProps) => {
   const forecastData = data.length > 0 ? data : dummyData;
 
   return (
-    <div className="grid grid-cols-5 gap-4 px-5 py-5 max-sm:grid-cols-3">
+    <>
+    <div className="flex justify-between px-5 pt-3 ">
+    <p className="font-bold text-xl uppercase max-md:text-l">Weather Forecast</p>
+    <p>{""}</p>
+  </div>
+    <div className="grid grid-cols-5 gap-4 px-5 py-3 max-sm:grid-cols-3">
       {forecastData.map((forecast, index) => (
         <Card key={index}>
           <CardHeader>
@@ -63,6 +68,7 @@ const ForecastCard = ({ data, state }: ForecastCardProps) => {
         </Card>
       ))}
     </div>
+    </>
   );
 };
 

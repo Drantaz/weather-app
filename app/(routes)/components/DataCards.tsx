@@ -21,7 +21,7 @@ const DataCards = ({data ,state}:CurrentData) => {
         <p>{""}</p>
       </div>
 
-      <div className="grid grid-cols-3   gap-x-4 gap-y-4 max-sm:gap-2 px-5  py-6 max-md:text-sm max-sm:grid-cols-2">
+      <div className="grid grid-cols-3   gap-x-4 gap-y-4 max-sm:gap-2 px-5  py-4 max-md:text-sm max-sm:grid-cols-2">
         <Card>
           <CardHeader>
             <CardDescription className="max-sm:text-[12px]">{state ?  <Skeleton className="h-4 w-5/12 bg-gray-300" /> :"Wind Status"}</CardDescription>
@@ -107,7 +107,7 @@ const DataCards = ({data ,state}:CurrentData) => {
                   alt="cloud"
                 />}
                {
-                    state? <Skeleton className="h-4 w-5/12 bg-gray-300" /> : <p className="text-xl max-md:text-sm font-bold">{sys ? FormatTime( sys?.sunrise):"5:30"}</p>}
+                    state? <Skeleton className="h-4 w-5/12 bg-gray-300" /> : <p className="text-xl max-md:text-sm font-bold">{sys ? FormatTime( sys?.sunrise):"5:30"} AM</p>}
               </div>
               <div className="flex items-center max-md:flex-col ">
               {
@@ -119,7 +119,7 @@ const DataCards = ({data ,state}:CurrentData) => {
                   alt="cloud"
                 />}
                 {
-                    state? <Skeleton className="h-4 w-5/12 bg-gray-300" /> :<p className="text-xl font-bold max-md:text-sm">{sys ?FormatTime( sys?.sunrise):"7:10"}</p>}
+                    state? <Skeleton className="h-4 w-5/12 bg-gray-300" /> :<p className="text-xl font-bold max-md:text-sm">{sys ?FormatTime( sys?.sunset) :"7:10"} PM</p>}
               </div>
             </div>
           </CardContent>
@@ -133,7 +133,7 @@ const DataCards = ({data ,state}:CurrentData) => {
             <div className="flex justify-around">
             {
                     state? <Skeleton className="h-4 w-5/12 bg-gray-300" /> :<p>
-                <span className="font-bold text-xl max-md:text-sm">{main ? main?.pressure:"23"} </span>
+                <span className="font-bold text-xl max-md:text-sm">{main ? main?.pressure:"23"} Pa</span>
               </p>}
               {
                 state ? <Skeleton className="h-12 w-12 rounded-full bg-gray-300" />:
