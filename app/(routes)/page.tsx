@@ -23,7 +23,7 @@ export default function Home() {
     try {
       setLoading(true);
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${data.city}&appid=29917a3810e9bd49c7f25d0c905eaa18&units=metric`
+        `https://api.openweathermap.org/data/2.5/weather?q=${data.city}&appid=${process.env.NEXT_PUBLIC_APP_KEY}&units=metric`
       );
       setWeather(response.data);
       forcastData();
@@ -36,7 +36,7 @@ export default function Home() {
 
   const forcastData = async () => {
     const response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/forecast?q=${data.city}&appid=29917a3810e9bd49c7f25d0c905eaa18&units=metric`
+      `https://api.openweathermap.org/data/2.5/forecast?q=${data.city}&appid=${process.env.NEXT_PUBLIC_APP_KEY}&units=metric`
     );
 
     const lists = response.data.list;
@@ -68,14 +68,14 @@ export default function Home() {
 
   return (
     <div>
-      <div className="flex justify-between items-center w-full px-10 py-3 ">
+      <div className="flex justify-between items-center w-full px-16 py-3 ">
         <h3 className="font-bold text-2xl uppercase dark:text-yellow-500">
           Weather Wise
         </h3>
         <ThemeData />
       </div>
       <div className="grid grid-cols-5 max-sm:flex-col max-sm:flex  justify-center items-center">
-        <div className="border-gray-200 border-r col-span-1 max-sm:border-none max-md:col-span-2">
+        <div className="dark:border-gray-800 dark:border-r col-span-1 max-sm:border-none max-md:col-span-2">
           <div className="mt-2 px-9 max-sm:px-2">
             <form onSubmit={onSubmit}>
               <Input

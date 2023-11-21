@@ -1,11 +1,14 @@
 import { Separator } from "@/components/ui/separator";
-import { converDay, convertTimeZone } from "@/helper/conver";
 import { Cloud, Rainbow } from "lucide-react";
 import Image from "next/image";
 import moment from "moment"
+import { convertEpochToTime } from "@/helper/conver";
 
 export const LeftSide = (data: any) => {
-  const { name, main, weather, dt, timezone } = data.data;
+  const { name, main, weather, dt } = data.data;
+  const now_time=convertEpochToTime(dt);
+  console.log(now_time);
+
   return (
     <div>
       <div className="">
@@ -34,7 +37,8 @@ export const LeftSide = (data: any) => {
         <h2 className="text-center flex justify-center bold text-2xl">
           {dt ? (
             <>
-               {moment(dt).format('dddd')}  {moment(dt).format("HH:mm")}
+               {moment(dt).format('dddd')}  {now_time}
+
             </>
           ) : (
             "Monday 6:30AM"
@@ -63,7 +67,7 @@ export const LeftSide = (data: any) => {
         </div>
       </div>
       <div className="relative  max-sm:hidden">
-        <div className="flex justify-center mt-[80px]">
+        <div className="flex justify-center mt-[50px]">
           <Image
             src="/images/gambia.jpg"
             width={300}

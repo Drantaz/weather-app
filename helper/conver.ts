@@ -11,22 +11,12 @@ export const FormatTime = (time: any) => {
     return formattedSunrise
 }
 
-export const  converDay=(timestamp:any)=> {
-    const date = new Date(timestamp * 1000);
-    const dayOfWeek = date.getDay();
-    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    return daysOfWeek[dayOfWeek];
-  }
-  
-
-  export const convertTimeZone=(timestamp:any, timezoneOffset:any)=> {
-    const date = new Date(timestamp * 1000);
-    date.setUTCSeconds(date.getUTCSeconds() + timezoneOffset);
-  
-    const timeString = date.toLocaleTimeString('en-US', {
-      hour: 'numeric',
-      minute: 'numeric',
-    });
-  
-    return timeString;
-  }
+export const convertEpochToTime = (epochTime:number) => {
+   const date = new Date(epochTime * 1000);
+ 
+   const hours = date.getUTCHours().toString().padStart(2, '0');
+   const minutes = date.getUTCMinutes().toString().padStart(2, '0');
+   const seconds = date.getUTCSeconds().toString().padStart(2, '0');
+ 
+   return `${hours}:${minutes}:${seconds}`;
+ };
