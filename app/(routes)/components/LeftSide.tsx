@@ -1,11 +1,11 @@
 import { Separator } from "@/components/ui/separator";
-import { Cloud, Rainbow } from "lucide-react";
+import { Cloud, LocateIcon, Rainbow } from "lucide-react";
 import Image from "next/image";
 import moment from "moment"
 import { convertEpochToTime } from "@/helper/conver";
 
 export const LeftSide = (data: any) => {
-  const { name, main, weather, dt } = data.data;
+  const { name, main, weather, dt,sys } = data.data;
   const now_time=convertEpochToTime(dt);
   console.log(now_time);
 
@@ -15,8 +15,8 @@ export const LeftSide = (data: any) => {
         {weather && weather.length > 0 ? (
           <Image
             src={`https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`}
-            width={300}
-            height={300}
+            width={270}
+            height={270}
             alt="gambia"
             className="rounded-2xl"
           />
@@ -37,7 +37,7 @@ export const LeftSide = (data: any) => {
         <h2 className="text-center flex justify-center bold text-2xl">
           {dt ? (
             <>
-               {moment(dt).format('dddd')}  {now_time}
+               {moment(dt).format('dddd')}
 
             </>
           ) : (
@@ -45,9 +45,9 @@ export const LeftSide = (data: any) => {
           )}
         </h2>
       </div>
-      <div className="px-8  max-sm:hidden">
-        <Separator className="mt-[30px] bg-gray-200" />
-        <div className="flex flex-col gap-y-5 m-8">
+      <div className="px-8  ">
+        <Separator className="mt-[30px] bg-gray-200 max-md:hidden" />
+        <div className="flex flex-col gap-y-5 m-8 max-md:flex-row max-md:gap-x-6 ">
           <div className="flex gap-x-3">
             <Cloud />
             {weather && weather.length > 0 ? (
@@ -77,7 +77,7 @@ export const LeftSide = (data: any) => {
           />
         </div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-l font-bold">
-          {name}
+         {name},{sys?.country}
         </div>
       </div>
     </div>

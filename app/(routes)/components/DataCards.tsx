@@ -21,13 +21,13 @@ const DataCards = ({data ,state}:CurrentData) => {
         <p>{""}</p>
       </div>
 
-      <div className="grid grid-cols-3   gap-x-4 gap-y-4 max-sm:gap-2 px-5  py-6 max-md:text-sm">
+      <div className="grid grid-cols-3   gap-x-4 gap-y-4 max-sm:gap-2 px-5  py-6 max-md:text-sm max-sm:grid-cols-2">
         <Card>
           <CardHeader>
             <CardDescription className="max-sm:text-[12px]">{state ?  <Skeleton className="h-4 w-5/12 bg-gray-300" /> :"Wind Status"}</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="flex justify-around max-md:flex-col ">
+            <div className="flex justify-around  ">
                 {
                     state? <Skeleton className="h-4 w-5/12 bg-gray-300" /> :<p><span className="font-bold text-xl max-md:text-sm">{ wind ?`${wind?.speed}Km/h`:"30Km/h"} </span> </p>
                 }
@@ -50,7 +50,7 @@ const DataCards = ({data ,state}:CurrentData) => {
             <CardDescription>{state ?  <Skeleton className="h-4 w-5/12 bg-gray-300" /> :"Humidity"}</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="flex justify-around max-md:flex-col">
+            <div className="flex justify-around ">
             {
                     state? <Skeleton className="h-4 w-5/12 bg-gray-300" /> :<p>
                 <span className="font-bold text-xl max-md:text-sm">{main ? main?.humidity: "11"}</span>%{" "}
@@ -72,7 +72,7 @@ const DataCards = ({data ,state}:CurrentData) => {
             <CardDescription>{state ?  <Skeleton className="h-4 w-5/12 bg-gray-300" /> :"Visibility"}</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="flex justify-around max-md:flex-col">
+            <div className="flex justify-around ">
             {
                     state? <Skeleton className="h-4 w-5/12 bg-gray-300" /> : <p>
                 <span className="font-bold text-xl">{visibility ? visibility / 1000:"67"} </span>
@@ -96,8 +96,8 @@ const DataCards = ({data ,state}:CurrentData) => {
             <CardDescription>{state ?  <Skeleton className="h-4 w-5/12 bg-gray-300" /> :"Sunrise & Sunset"}</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="flex justify-between max-md:flex-col ">
-              <div className="flex items-center max-md:justify-center">
+            <div className="flex justify-between  ">
+              <div className="flex items-center max-md:justify-center max-md:flex-col">
               {
                 state ? <Skeleton className="h-12 w-12 rounded-full bg-gray-300" />:
                 <Image
@@ -109,7 +109,7 @@ const DataCards = ({data ,state}:CurrentData) => {
                {
                     state? <Skeleton className="h-4 w-5/12 bg-gray-300" /> : <p className="text-xl max-md:text-sm font-bold">{sys ? FormatTime( sys?.sunrise):"5:30"}</p>}
               </div>
-              <div className="flex items-center max-md:justify-center">
+              <div className="flex items-center max-md:flex-col ">
               {
                 state ? <Skeleton className="h-12 w-12 rounded-full bg-gray-300" />:
                 <Image
@@ -130,7 +130,7 @@ const DataCards = ({data ,state}:CurrentData) => {
             <CardDescription>{state ?  <Skeleton className="h-4 w-5/12 bg-gray-300" /> :"Pressure"}</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="flex justify-around max-md:flex-col">
+            <div className="flex justify-around">
             {
                     state? <Skeleton className="h-4 w-5/12 bg-gray-300" /> :<p>
                 <span className="font-bold text-xl max-md:text-sm">{main ? main?.pressure:"23"} </span>
@@ -152,7 +152,7 @@ const DataCards = ({data ,state}:CurrentData) => {
             <CardDescription>{state ?  <Skeleton className="h-4 w-5/12 bg-gray-300" /> :"Clouds"}</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="flex justify-around max-md:flex-col">
+            <div className="flex justify-around ">
             {
                     state? <Skeleton className="h-4 w-5/12 bg-gray-300" /> :<p>
                 <span className="font-bold text-xl max-md:text-sm">{clouds ? clouds?.all :"8"}</span>
@@ -174,7 +174,7 @@ const DataCards = ({data ,state}:CurrentData) => {
             <CardDescription>{state ?  <Skeleton className="h-4 w-5/12 bg-gray-300" /> :"Feels Like"}</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="flex justify-around max-md:flex-col max-md:justify-between">
+            <div className="flex justify-around  max-md:justify-between">
             {
                     state? <Skeleton className="h-4 w-5/12 bg-gray-300" /> :<p>
                 <span className="font-bold text-xl max-md:text-sm">{main ? main?.feels_like:"11"}°C</span>
@@ -196,7 +196,7 @@ const DataCards = ({data ,state}:CurrentData) => {
             <CardDescription>{state ?  <Skeleton className="h-4 w-5/12 bg-gray-300" /> :"Minimum Temperature"}</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="flex justify-around max-md:flex-col">
+            <div className="flex justify-around ">
             {
                     state? <Skeleton className="h-4 w-5/12 bg-gray-300" /> :<p>
                 <span className="font-bold text-xl max-md:text-sm">{ main ? main?.temp_min:"11.30"}°C</span>
@@ -218,7 +218,7 @@ const DataCards = ({data ,state}:CurrentData) => {
             <CardDescription>{state ?  <Skeleton className="h-4 w-5/12 bg-gray-300" /> :"Maximum Temperature"}</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="flex justify-around max-md:flex-col max-md:justify-between">
+            <div className="flex justify-around  max-md:justify-between">
             {
                     state? <Skeleton className="h-4 w-5/12 bg-gray-300" /> : <p>
                 <span className="font-bold text-xl max-md:text-sm">{ main ? main?.temp_max:"11.50"}°C</span>

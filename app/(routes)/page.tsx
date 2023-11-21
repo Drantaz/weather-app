@@ -7,11 +7,14 @@ import { useState } from "react";
 import ForecastCard from "./components/ForecastCard";
 import { CurrentData, Data, ForecastData } from "./interfaces";
 import ThemeData from "./components/Theme";
+import { cn } from "@/lib/utils";
+import ErrorMsg from "./components/Error";
 
 export default function Home() {
   const [weather, setWeather] = useState<Data[]>([]);
   const [forecast, setForcast] = useState<ForecastData[]>([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string>('');
 
   const [data, setData] = useState({
     city: ""
@@ -27,14 +30,17 @@ export default function Home() {
       );
       setWeather(response.data);
       forcastData();
+      setError('');
     } catch (error) {
         console.log("Something went wrong");
+        setError('Invalid city name. Please enter a valid city for accurate weather information.');
     } finally {
       setLoading(false);
     }}
   };
 
   const forcastData = async () => {
+    try{
     const response = await axios.get(
       `https://api.openweathermap.org/data/2.5/forecast?q=${data.city}&appid=${process.env.NEXT_PUBLIC_APP_KEY}&units=metric`
     );
@@ -56,6 +62,9 @@ export default function Home() {
     }
 
     setForcast(first5);
+  }catch (error) {
+    setError('Invalid city name. Please enter a valid city for accurate Forecast information.');
+  }
   };
 
   const handleChange = (e: any) => {
@@ -75,7 +84,7 @@ export default function Home() {
         <ThemeData />
       </div>
       <div className="grid grid-cols-5 max-sm:flex-col max-sm:flex  justify-center items-center">
-        <div className="dark:border-gray-800 dark:border-r col-span-1 max-sm:border-none max-md:col-span-2">
+        <div className="col-span-1 max-sm:border-none max-md:col-span-2">
           <div className="mt-2 px-9 max-sm:px-2">
             <form onSubmit={onSubmit}>
               <Input
@@ -86,14 +95,14 @@ export default function Home() {
                 onChange={handleChange}
               />
             </form>
+           
           </div>
           <LeftSide data={weather}  state={loading}/>
         </div>
 
-        <div className="col-span-4 max-md:col-span-3 max-w-md:gri  dark:bg-background bg-gray-200 max-sm:bg-white">
-          
-          <ForecastCard data={forecast} state={loading} />
-          <DataCards data={weather} state={loading} />
+        <div className="col-span-4 max-md:col-span-3 max-w-md:gri  dark:bg-background bg-gray-200 max-sm:bg-white rounded border max-md:border-none">
+          {error  ? (<ErrorMsg data={error} className="border-none"/>): <><ForecastCard data={forecast} state={loading} /><DataCards data={weather} state={loading} /></>}
+         
         </div>
       </div>
     </div>

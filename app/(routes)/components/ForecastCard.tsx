@@ -26,7 +26,7 @@ const ForecastCard = ({ data, state }: ForecastCardProps) => {
   const forecastData = data.length > 0 ? data : dummyData;
 
   return (
-    <div className="grid grid-cols-5 gap-4 px-5 py-5 max-sm:gap-1">
+    <div className="grid grid-cols-5 gap-4 px-5 py-5 max-sm:grid-cols-3">
       {forecastData.map((forecast, index) => (
         <Card key={index}>
           <CardHeader>
